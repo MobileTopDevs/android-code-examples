@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.sample.app.util.Constants" />
+
+        <variable
+            name="transaction"
+            type="com.sample.app.data.api.models.Transaction" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingHorizontal="@dimen/margin_2x"
+        android:paddingTop="@dimen/margin_1_5x">
+
+        <TextView
+            android:id="@+id/transaction_currency_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{transaction.currency}"
+            android:textAppearance="@style/TextAppearance.SampleApp.Body1"
+            android:textColor="@color/textBlack"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="AUD" />
+
+        <TextView
+            android:id="@+id/transaction_currency_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_0_5x"
+            android:textAppearance="@style/TextAppearance.SampleApp.Subtitle2"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp"
+            app:decimalValue="@{transaction.amount}"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/transaction_currency_text"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="500" />
+
+        <TextView
+            android:id="@+id/transaction_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_0_5x"
+            android:textAppearance="@style/TextAppearance.SampleApp.Body2"
+            android:textColor="@color/borderGray"
+            app:date="@{transaction.createdAt}"
+            app:dateFormat="@{Constants.DATE_FORMAT_ONLY_DATE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transaction_currency_text"
+            tools:text="12.05.2021" />
+
+        <TextView
+            android:id="@+id/transaction_status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_1x"
+            android:textAllCaps="false"
+            android:textAppearance="@style/TextAppearance.SampleApp.Caption"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/transaction_currency_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/transaction_currency_text"
+            app:transactionStatusColored="@{true}"
+            app:transactionStatusText="@{transaction.transactionStatus}"
+            tools:text="Failed"
+            tools:textColor="@color/textRed" />
+
+        <View
+            android:id="@+id/transaction_separator"
+            style="@style/Separator"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/margin_1_5x"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transaction_date_text" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
